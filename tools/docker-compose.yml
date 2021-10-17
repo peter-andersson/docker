@@ -1,0 +1,20 @@
+version: "3.8"
+
+services:
+  # Certificate
+  acme:
+    container_name: acme
+    image: neilpang/acme.sh:latest
+    environment:
+      LE_CONFIG_HOME: '/acme.sh'
+      AUTO_UPGRADE: 1
+    volumes:
+      - /volume1/docker/acme:/acme.sh
+  # Backup
+  rclone:
+    container_name: rclone
+    image: rclone/rclone
+    volumes:
+      - /volume1/docker/rclone:/config/rclone
+      - /volume1/data/:/data
+    user: "1026:100"

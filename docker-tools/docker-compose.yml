@@ -1,0 +1,12 @@
+version: "3.8"
+
+services:
+  # Docker registry
+  registry:
+    image: registry:2
+    container_name: docker-registry
+    ports:
+      - 5002:5000/tcp
+    volumes:
+      - /volume1/docker/registry:/var/lib/registry
+    restart: unless-stopped
