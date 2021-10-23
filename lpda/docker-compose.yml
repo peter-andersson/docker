@@ -130,16 +130,4 @@ services:
       - $DATA_PATH/wiki:/wiki
     ports:
       - "7501:4567"
-    restart: unless-stopped
-  # Linkding
-  linkding:
-    image: sissbruecker/linkding:latest    
-    container_name: linkding    
-    environment:
-      - LD_DISABLE_BACKGROUND_TASKS=True
-      - LD_DISABLE_URL_VALIDATION=True
-    volumes:
-      - $DOCKER_PATH/linkding:/etc/linkding/data
-    ports:
-      - "7502:9090"      
-    restart: unless-stopped                     
+    restart: unless-stopped             
