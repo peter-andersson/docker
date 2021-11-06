@@ -66,20 +66,7 @@ services:
     volumes:
       - $DOCKER_PATH:/data/
       - $DATA_PATH/backup/:/backup/
-    restart: unless-stopped  
-  # VideoPlayer
-  videoplayer:
-    image: registry.local.lpda.se/videoplayer:latest
-    container_name: videoplayer    
-    env_file:
-      - egna.env    
-    environment:
-      - VideoPath=/videos
-    volumes:
-      - $DATA_PATH/videos:/videos
-    ports:
-      - "7201:80/tcp"      
-    restart: unless-stopped        
+    restart: unless-stopped          
   # PeterPedia - Collection of my own apps.
   peterpedia:
     image: ghcr.io/peter-andersson/peterpedia:latest
@@ -93,21 +80,10 @@ services:
     volumes:
         - /volume1/docker/peterpedia/db/:/db
         - /volume1/docker/peterpedia/logs:/logs
+        - /volume1/data/videos:/video
     ports:
       - "7202:80/tcp"        
-    restart: unless-stopped  
-  # Homer
-  homer:
-    image: b4bz/homer:latest
-    container_name: homer
-    ports:
-      - "7203:8080"
-    environment:
-      - UID=1026
-      - GID=100      
-    volumes:
-      - /volume1/docker/homer:/www/assets    
-    restart: unless-stopped      
+    restart: unless-stopped    
   # Pigallery2 - Photoviewer
   pigallery2:
     image: bpatrik/pigallery2:latest-debian-buster
