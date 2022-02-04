@@ -97,13 +97,4 @@ services:
       - $DATA_PATH/photos:/app/data/images
     ports:
       - "7500:80"
-    restart: unless-stopped
-  # Gollum wiki
-  gollum:
-    image: gollumwiki/gollum:latest
-    container_name: gollum
-    volumes:
-      - $DATA_PATH/wiki:/wiki
-    ports:
-      - "7501:4567"
-    restart: unless-stopped             
+    restart: unless-stopped           
