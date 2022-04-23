@@ -75,35 +75,13 @@ services:
       - egna.env
       - .secrets
     environment:
-      - Logging__PathFormat=/logs/{Date}.txt
       - ConnectionStrings__PeterPedia=Data Source=/db/peterpedia.db
     volumes:
         - /volume1/docker/peterpedia/db/:/db
         - /volume1/docker/peterpedia/logs:/logs
         - /volume1/data/videos:/video
+        - /volume1/data/photos:/photos
+        - /volume1/docker/peterpedia/images:/images
     ports:
       - "7202:80/tcp"        
-    restart: unless-stopped    
-  # Pigallery2 - Photoviewer
-  pigallery2:
-    image: bpatrik/pigallery2:latest-debian-buster
-    container_name: pigallery2
-    environment:
-      - NODE_ENV=production
-    volumes:
-      - $DOCKER_PATH/pigallary2/config:/app/data/config
-      - $DOCKER_PATH/pigallary2/tmp:/app/data/tmp
-      - $DOCKER_PATH/pigallary2/db:/app/data/db
-      - $DATA_PATH/photos:/app/data/images
-    ports:
-      - "7500:80"
-    restart: unless-stopped
-  # Gollum wiki
-  gollum:
-    image: gollumwiki/gollum:latest
-    container_name: gollum
-    volumes:
-      - $DATA_PATH/wiki:/wiki
-    ports:
-      - "7501:4567"
-    restart: unless-stopped             
+    restart: unless-stopped            
