@@ -66,22 +66,4 @@ services:
     volumes:
       - $DOCKER_PATH:/data/
       - $DATA_PATH/backup/:/backup/
-    restart: unless-stopped          
-  # PeterPedia - Collection of my own apps.
-  peterpedia:
-    image: ghcr.io/peter-andersson/peterpedia:latest
-    container_name: peterpedia
-    env_file:
-      - egna.env
-      - .secrets
-    environment:
-      - ConnectionStrings__PeterPedia=Data Source=/db/peterpedia.db
-    volumes:
-        - /volume1/docker/peterpedia/db/:/db
-        - /volume1/docker/peterpedia/logs:/logs
-        - /volume1/data/videos:/video
-        - /volume1/data/photos:/photos
-        - /volume1/docker/peterpedia/images:/images
-    ports:
-      - "7202:80/tcp"        
-    restart: unless-stopped            
+    restart: unless-stopped
